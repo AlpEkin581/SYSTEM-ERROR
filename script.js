@@ -1,35 +1,50 @@
 const GIZLI_KOD = "FLUX-666-PIZZA";
-const BEKLEME_KODU = "SABIRLI-VARIS-99"; // 1 dakika bekleyince verilecek kod
-let notlarTimer;
+const BEKLEME_KODU = "SABIRLI-VARIS-99";
 
 function openFolder() {
-    alert("NOT: Sistemi kapatma, o seni izliyor... (Pencereyi kapatma, dosyalar yükleniyor...)");
+    // Diğer pencereleri kapat ki çakışmasın
+    closeTerminal(); 
     
-    // 60 saniye (1 dakika) sonra gizli kodu fısılda
-    notlarTimer = setTimeout(() => {
-        alert("Sistem derinliklerinden bir ses: 'Sabrın ödüllendirildi... İkinci kodun: " + BEKLEME_KODU + "'");
-    }, 60000); // 60.000 milisaniye = 1 dakika
+    const loadBox = document.getElementById('loading-box');
+    const bar = document.getElementById('progress-bar');
+    loadBox.classList.remove('hidden');
+    
+    let w = 0;
+    let timer = setInterval(() => {
+        w++;
+        bar.style.width = w + "%";
+        if (w >= 100) {
+            clearInterval(timer);
+            // Alert yerine kutu içine yazdırabiliriz ama şimdilik kod gelsin:
+            alert("SİSTEM DERİNLİKLERİNDEN MESAJ:\nİkinci Kod: " + BEKLEME_KODU);
+            loadBox.classList.add('hidden');
+        }
+    }, 450); // 45 Saniye
 }
 
-// Terminal kontrolüne ikinci kodu da ekleyelim
-function checkCode() {
-    const code = document.getElementById('access-code').value;
-    const output = document.getElementById('terminal-output');
+function openTerminal() {
+    document.getElementById('terminal-window').classList.remove('hidden');
+}
 
-    if (code === GIZLI_KOD) {
-        output.innerHTML = `
-            <p style="color:yellow;">[ERİŞİM ONAYLANDI - SEVİYE 1]</p>
-            <p onclick="alert('Önceki Varis: Soğuk pizza yemek hapsolmaktan daha zordu..')">📄 Kurban_01.txt</p>
-            <p onclick="alert('Sistem Notu: Yeni yönetici şu an ekranı izliyor.')">📄 Gozlem_Raporu.log</p>
-        `;
-    } else if (code === BEKLEME_KODU) {
-        output.innerHTML = `
-            <p style="color:cyan;">[ÖZEL ERİŞİM - SABIRLI VARİS MODU]</p>
-            <p onclick="alert('Pizzacıdan mesaj: Abi senin siparişi 100 yıl önce bıraktık, kapıda kalmış.')">🍕 Pizza_Faturasi.pdf</p>
-            <p onclick="alert('Gizli Veri: Sistemin asıl sahibi aslında bir yapay zeka hatasıymış.')">💾 Gercek_Hikaye.dat</p>
-            <p onclick="alert('Mors Çevirisi: BURADAN CIKIS YOK')">📻 Sinyal_Kaydi.wav</p>
-        `;
+function closeTerminal() {
+    document.getElementById('terminal-window').classList.add('hidden');
+}
+
+function startFinal() {
+    let s = prompt("Vârisim olmak ister misin? (Evet/Hayır)");
+    if(s?.toLowerCase() === "evet") {
+        document.body.innerHTML = `<div style="color:#0f0; text-align:center; padding-top:100px;"><h1>YENİ YÖNETİCİ SENSİN</h1><p>KODUN: ${GIZLI_KOD}</p><button onclick="location.reload()">GERİ DÖ</button></div>`;
+    }
+}
+
+function checkCode() {
+    const inp = document.getElementById('access-code').value;
+    const out = document.getElementById('terminal-output');
+    if(inp === GIZLI_KOD) {
+        out.innerHTML = "<p>LVL 1: Pizza soğudu...</p>";
+    } else if(inp === BEKLEME_KODU) {
+        out.innerHTML = "<p style='color:cyan;'>LVL 2: Sabırlı Varis! 🍕 Pizza Faturası: 0.00$</p>";
     } else {
-        output.innerHTML = `<p style="color:red;">[HATALI KOD! ERİŞİM ENGELLENDİ]</p>`;
+        out.innerHTML = "<p style='color:red;'>HATALI!</p>";
     }
 }
