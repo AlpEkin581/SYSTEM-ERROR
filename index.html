@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Hatası - 0x000666</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="desktop">
+        <div id="taskbar">
+            <button onclick="openFolder('notlar')">Notlar.txt</button>
+            <button onclick="startFinal()">SİSTEM.exe</button>
+        </div>
+        
+        <div id="window" class="hidden">
+            <div class="title-bar">Bilinmeyen Kullanıcı</div>
+            <div class="content">
+                <p id="chat-msg"></p>
+                <input type="text" id="user-input" class="hidden" placeholder="Cevap ver...">
+            </div>
+        </div>
+    </div>
+
+    <div id="boss-area" class="hidden">
+        <h1>SİSTEMİ TERK EDEMEZSİN!</h1>
+        <div id="boss-health">BOSS CANI: 10</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
