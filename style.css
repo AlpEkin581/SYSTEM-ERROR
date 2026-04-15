@@ -1,0 +1,35 @@
+body {
+    background-color: #000;
+    color: #0f0; /* Terminal Yeşili */
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+#desktop {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('glitch-bg.gif'); /* Buraya glitchli bir resim koyabilirsin */
+}
+
+.hidden { display: none; }
+
+#window {
+    width: 300px;
+    border: 2px solid #0f0;
+    background: #000;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    padding: 10px;
+}
+
+.title-bar { background: #0f0; color: #000; font-weight: bold; padding: 2px; }
+
+/* Glitch Efekti */
+@keyframes shake {
+    0% { transform: translate(1px, 1px); }
+    50% { transform: translate(-1px, -1px); }
+    100% { transform: translate(1px, -1px); }
+}
+
+.glitch { animation: shake 0.1s infinite; }
