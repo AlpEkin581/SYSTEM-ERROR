@@ -1,39 +1,45 @@
 <div id="desktop">
     <div class="icons-container">
-        <button class="icon-btn" onclick="openFolder()">
+        <button class="hacker-btn" onclick="openFolder()">
             <span class="emoji">📁</span>
             <span class="label">Notlar.txt</span>
         </button>
         
-        <button class="icon-btn" onclick="openTerminal()">
+        <button class="hacker-btn" onclick="openTerminal()">
             <span class="emoji">📟</span>
             <span class="label">Terminal</span>
         </button>
         
-        <button class="icon-btn" onclick="startFinal()">
+        <button class="hacker-btn" onclick="startFinal()">
             <span class="emoji">⚠️</span>
             <span class="label">SİSTEM.exe</span>
-        </button>
-    </div>
-
-    <div id="custom-msg" class="hidden terminal-box">
-        <div class="title-bar"> [SYSTEM_ALERT] </div>
-        <p id="msg-content"></p>
-        <button class="action-btn" onclick="closeMsg()"> > DEVAM ET </button>
-    </div>
-
-    <div id="loading-box" class="hidden terminal-box">
-        <div class="title-bar"> [DECRYPTING_DATA] </div>
-        <div class="progress-container">
-            <div id="progress-bar"></div>
         </div>
     </div>
 
-    <div id="terminal-window" class="hidden terminal-box">
-        <div class="title-bar"> [ROOT_TERMINAL] </div>
-        <input type="text" id="access-code" placeholder="ERİŞİM_KODU_GİRİN..." autocomplete="off">
-        <button class="action-btn" onclick="checkCode()"> > EXECUTE </button>
-        <div id="terminal-output"></div>
-        <button class="close-btn" onclick="closeTerminal()"> [KAPAT] </button>
+    <div id="custom-msg" class="hidden terminal-window">
+        <div class="header">[SYSTEM_ALERT]</div>
+        <div class="body">
+            <p id="msg-content"></p>
+            <button class="exe-btn" onclick="closeMsg()">> DEVAM_ET</button>
+        </div>
+    </div>
+
+    <div id="loading-box" class="hidden terminal-window">
+        <div class="header">[DECRYPTING_DATA]</div>
+        <div class="body">
+            <div class="progress-bg">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="terminal-window" class="hidden terminal-window">
+        <div class="header">[ROOT_ACCESS]</div>
+        <div class="body">
+            <input type="text" id="access-code" placeholder="GIRIS_KODU..." autocomplete="off">
+            <button class="exe-btn" onclick="checkCode()">> CALISTIR</button>
+            <div id="terminal-output"></div>
+            <button class="close-btn" onclick="closeTerminal()">[KAPAT]</button>
+        </div>
     </div>
 </div>
