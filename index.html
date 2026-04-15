@@ -7,24 +7,36 @@
 </head>
 <body>
     <div id="desktop">
-        <div id="taskbar">
-            <button onclick="openFolder('notlar')">Notlar.txt</button>
-            <button onclick="startFinal()">SİSTEM.exe</button>
+        <div class="icons">
+            <div class="icon" onclick="openFolder()">
+                <span>📁</span>
+                <p>Notlar.txt</p>
+            </div>
+            <div class="icon" onclick="openTerminal()">
+                <span>📟</span>
+                <p>Terminal</p>
+            </div>
+            <div class="icon" onclick="startFinal()">
+                <span>⚠️</span>
+                <p>SİSTEM.exe</p>
+            </div>
         </div>
-        
-        <div id="window" class="hidden">
-            <div class="title-bar">Bilinmeyen Kullanıcı</div>
+
+        <div id="terminal-window" class="hidden">
+            <div class="title-bar">SİSTEM TERMİNALİ v1.0</div>
             <div class="content">
-                <p id="chat-msg"></p>
-                <input type="text" id="user-input" class="hidden" placeholder="Cevap ver...">
+                <p id="terminal-text">ERİŞİM KODUNU GİRİN:</p>
+                <input type="text" id="access-code" placeholder="Kod...">
+                <button onclick="checkCode()">ONAYLA</button>
+                <div id="terminal-output"></div>
+                <button class="close-btn" onclick="closeTerminal()">KAPAT</button>
             </div>
         </div>
     </div>
 
-    <div id="boss-area" class="hidden">
-        <h1>SİSTEMİ TERK EDEMEZSİN!</h1>
-        <div id="boss-health">BOSS CANI: 10</div>
-    </div>
+    <script src="script.js"></script>
+</body>
+</html>
 
     <script src="script.js"></script>
 </body>
