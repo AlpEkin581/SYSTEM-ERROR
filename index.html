@@ -1,43 +1,31 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistem Hatası - 0x000666</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="desktop">
-        <div class="icons">
-            <div class="icon" onclick="openFolder()">
-                <span>📁</span>
-                <p>Notlar.txt</p>
-            </div>
-            <div class="icon" onclick="openTerminal()">
-                <span>📟</span>
-                <p>Terminal</p>
-            </div>
-            <div class="icon" onclick="startFinal()">
-                <span>⚠️</span>
-                <p>SİSTEM.exe</p>
-            </div>
+<div id="desktop">
+    <div class="icons-container">
+        <div class="icon" onclick="openFolder()">
+            <span>📁</span>
+            <p>Notlar.txt</p>
         </div>
-
-        <div id="terminal-window" class="hidden">
-            <div class="title-bar">SİSTEM TERMİNALİ v1.0</div>
-            <div class="content">
-                <p id="terminal-text">ERİŞİM KODUNU GİRİN:</p>
-                <input type="text" id="access-code" placeholder="Kod...">
-                <button onclick="checkCode()">ONAYLA</button>
-                <div id="terminal-output"></div>
-                <button class="close-btn" onclick="closeTerminal()">KAPAT</button>
-            </div>
+        <div class="icon" onclick="openTerminal()">
+            <span>📟</span>
+            <p>Terminal</p>
+        </div>
+        <div class="icon" onclick="startFinal()">
+            <span>⚠️</span>
+            <p>SİSTEM.exe</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <div id="loading-box" class="hidden">
+        <div class="title-bar">TARANIYOR...</div>
+        <div id="progress-bar-bg"><div id="progress-bar"></div></div>
+    </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <div id="terminal-window" class="hidden">
+        <div class="title-bar">TERMİNAL</div>
+        <div class="content">
+            <input type="text" id="access-code" placeholder="Kod...">
+            <button onclick="checkCode()">GİR</button>
+            <div id="terminal-output"></div>
+            <button class="close-btn" onclick="closeTerminal()">KAPAT</button>
+        </div>
+    </div>
+</div>
