@@ -1,48 +1,33 @@
 const GIZLI_KOD = "FLUX-666-PIZZA";
+const BEKLEME_KODU = "SABIRLI-VARIS-99"; // 1 dakika bekleyince verilecek kod
+let notlarTimer;
 
 function openFolder() {
-    alert("NOT: Sistemi kapatma, o seni izliyor...");
+    alert("NOT: Sistemi kapatma, o seni izliyor... (Pencereyi kapatma, dosyalar yükleniyor...)");
+    
+    // 60 saniye (1 dakika) sonra gizli kodu fısılda
+    notlarTimer = setTimeout(() => {
+        alert("Sistem derinliklerinden bir ses: 'Sabrın ödüllendirildi... İkinci kodun: " + BEKLEME_KODU + "'");
+    }, 60000); // 60.000 milisaniye = 1 dakika
 }
 
-function openTerminal() {
-    document.getElementById('terminal-window').classList.remove('hidden');
-}
-
-function closeTerminal() {
-    document.getElementById('terminal-window').classList.add('hidden');
-}
-
-function startFinal() {
-    let secim = prompt("Varisim olmak ister misin? (Evet/Hayır)");
-
-    if (secim?.toLowerCase() === "evet") {
-        document.body.innerHTML = `
-            <div style="background:white; color:black; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-family:serif;">
-                <h1 style="font-size:50px;">YENİ YÖNETİCİ SENSİN.</h1>
-                <p>Gizli dosyalar için erişim anahtarın:</p>
-                <div style="border:4px double black; padding:20px; font-size:30px; margin:20px;">
-                    ${GIZLI_KOD}
-                </div>
-                <p>Bu kodu Terminal'e girerek arşivi açabilirsin.</p>
-                <button onclick="location.reload()" style="background:black; color:white; padding:10px 20px;">SİSTEME DÖN</button>
-            </div>
-        `;
-    } else {
-        alert("HATA: SİSTEMDEN KAÇAMAZSIN! (Boss Fight yakında eklenecek...)");
-    }
-}
-
+// Terminal kontrolüne ikinci kodu da ekleyelim
 function checkCode() {
     const code = document.getElementById('access-code').value;
     const output = document.getElementById('terminal-output');
 
     if (code === GIZLI_KOD) {
         output.innerHTML = `
-            <p style="color:yellow;">[ERİŞİM ONAYLANDI]</p>
+            <p style="color:yellow;">[ERİŞİM ONAYLANDI - SEVİYE 1]</p>
             <p onclick="alert('Önceki Varis: Soğuk pizza yemek hapsolmaktan daha zordu..')">📄 Kurban_01.txt</p>
             <p onclick="alert('Sistem Notu: Yeni yönetici şu an ekranı izliyor.')">📄 Gozlem_Raporu.log</p>
-            <p onclick="alert('Şifreli Mesaj: ..-. .-.. ..- -..-')">📄 Mors_Sifresi.bin</p>
-            <p style="color:red; cursor:not-allowed;">🔥 SİSTEMİ_SİL.exe (YETKİ YOK)</p>
+        `;
+    } else if (code === BEKLEME_KODU) {
+        output.innerHTML = `
+            <p style="color:cyan;">[ÖZEL ERİŞİM - SABIRLI VARİS MODU]</p>
+            <p onclick="alert('Pizzacıdan mesaj: Abi senin siparişi 100 yıl önce bıraktık, kapıda kalmış.')">🍕 Pizza_Faturasi.pdf</p>
+            <p onclick="alert('Gizli Veri: Sistemin asıl sahibi aslında bir yapay zeka hatasıymış.')">💾 Gercek_Hikaye.dat</p>
+            <p onclick="alert('Mors Çevirisi: BURADAN CIKIS YOK')">📻 Sinyal_Kaydi.wav</p>
         `;
     } else {
         output.innerHTML = `<p style="color:red;">[HATALI KOD! ERİŞİM ENGELLENDİ]</p>`;
