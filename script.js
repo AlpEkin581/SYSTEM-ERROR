@@ -1,29 +1,53 @@
-const GIZLI_KOD = "FLUX-666-PIZZA";
-const BEKLEME_KODU = "SABIRLI-VARIS-99";
-let mainTimer;
+const KOD_1 = "FLUX-666-PIZZA";
+const KOD_2 = "SABIRLI-VARIS-99";
+let timer;
+
+function openBox(id) {
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function closeBox(id) {
+    document.getElementById(id).classList.add('hidden');
+}
 
 function openFolder() {
-    document.getElementById('msg-content').innerText = "SİSTEM_TARANIYOR... [LÜTFEN BEKLEYİN]";
-    document.getElementById('custom-msg').classList.remove('hidden');
+    openBox('msg-box');
+    document.getElementById('msg-text').innerText = "SISTEM TARANIYOR... [LUTFEN BEKLEYIN]";
     
-    const b = document.getElementById('progress-bar');
-    document.getElementById('loading-box').classList.remove('hidden');
+    const bar = document.getElementById('bar');
+    openBox('loading-box');
     
     let w = 0;
-    clearInterval(mainTimer);
-    mainTimer = setInterval(() => {
+    clearInterval(timer);
+    timer = setInterval(() => {
         w++;
-        b.style.width = w + "%";
+        bar.style.width = w + "%";
         if(w >= 100) {
-            clearInterval(mainTimer);
-            document.getElementById('msg-content').innerText = "VERİ_ÇÖZÜLDÜ: " + BEKLEME_KODU;
-            document.getElementById('loading-box').classList.add('hidden');
+            clearInterval(timer);
+            document.getElementById('msg-text').innerText = "VERI COZULDU: " + KOD_2;
+            closeBox('loading-box');
         }
     }, 450); // 45 Saniye
 }
 
-function closeMsg() { document.getElementById('custom-msg').classList.add('hidden'); }
-function openTerminal() { document.getElementById('terminal-window').classList.remove('hidden'); }
-function closeTerminal() { document.getElementById('terminal-window').classList.add('hidden'); }
+function openTerminal() { openBox('terminal-window'); }
 
-// startFinal ve checkCode aynı kalsın...
+function startFinal() {
+    let s = prompt("VARISIM OLACAK MISIN? (EVET/HAYIR)");
+    if(s?.toUpperCase() === "EVET") {
+        document.body.innerHTML = `
+            <div style="background:#000; color:#0f0; height:100vh; text-align:center; padding-top:100px; font-family:monospace;">
+                <h1 style="font-size:50px;">[YETKI_DEVREDILDI]</h1>
+                <p style="font-size:24px;">ERISIM_KODUN: ${KOD_1}</p>
+                <button onclick="location.reload()" style="background:#0f0; border:none; padding:15px; cursor:pointer; font-weight:bold;">SISTEME_DON</button>
+            </div>`;
+    }
+}
+
+function checkCode() {
+    const inp = document.getElementById('code-input').value;
+    const out = document.getElementById('output');
+    if(inp === KOD_1) out.innerHTML = "<p style='color:yellow;'>[LOGS]: Pizza faturası bulundu. Soguk yenmis...</p>";
+    else if(inp === KOD_2) out.innerHTML = "<p style='color:cyan;'>[LOGS]: Sabırlı varis onaylandı!</p>";
+    else out.innerHTML = "<p style='color:red;'>[ERROR]: HATALI_KOD</p>";
+}
